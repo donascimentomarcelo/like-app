@@ -1,15 +1,15 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native';
-
+import { capitalizeFristLetter } from '../../../utils/Utils';
 
 const ProductList = props => {
 
     const { products } = props || [];
     const elements =  products.map(product => {
-        const { name, id } = product;
+        const { id, name, price } = product;
         return (
             <View key={ id } style={styles.line}>
-                <Text style={styles.lineText}>{ name }</Text>
+                <Text style={styles.lineText}>{ `${capitalizeFristLetter(name)} ${price}` }</Text>
             </View>
         );
     });
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     lineText: {
-        fontSize: 20,
+        fontSize: 15,
         paddingLeft: 15
     }
 });

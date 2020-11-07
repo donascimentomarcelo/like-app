@@ -1,37 +1,32 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import Header from './src/layout/Header';
-import * as CONST from './src/helpers/Constants';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import Axios from 'axios';
-import ProductList from './src/components/products/list/productList';
+import ProductComponent from './src/components/products/Product';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+import * as CONST from './src/helpers/Constants'
 
-    this.state = {
-      products: []
-    };
+const AppNavigator = createStackNavigator({
+  Main: {
+    screen: ProductComponent
   }
+}, {
+  defaultNavigationOptions: {
+    title: CONST.TITLE,
+    headerStyle: {
+      backgroundColor: 'red',
+      borderBottomWidth: 1,
+      borderBottomColor: '#C5C5C5',
+    },
+    headerTitleStyle: {
+      color: 'white',
+      fontSize: 20,
 
-  componentDidMount() {
-    Axios
-      .get('http://localhost:8080/products')
-        .then(resp => {
-          const { data } = resp;
-          this.setState({products: data})
-        })
-        .catch(error => console.log(error));
+      flexGrow: 1,
+      textAlign: 'center'
+    }
   }
+});
 
-  render () {
-    return (
-      <View>
-        <Header 
-          title={CONST.TITLE}/>
-          <ProductList products={this.state.products}/>
-      </View>
-    )
-  }
-}
+const AppContainer = createAppContainer(AppNavigator);
+
+export default AppContainer;

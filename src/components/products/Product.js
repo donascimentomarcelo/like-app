@@ -26,7 +26,9 @@ export default class ProductComponent extends React.Component {
   render () {
     return (
       <View>
-          <ProductList products={this.state.products}/>
+          <ProductList 
+                products={this.state.products}
+                navigationDetail={(product) => this.props.navigation.navigate('ProductForm', product)}/>
       </View>
     )
   }

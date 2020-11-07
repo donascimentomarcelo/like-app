@@ -1,16 +1,21 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { capitalizeFristLetter } from '../../../utils/Utils';
 
 const ProductList = props => {
 
-    const { products } = props || [];
+    const { products, navigationDetail } = props || [];
     const elements =  products.map(product => {
         const { id, name, price } = product;
         return (
-            <View key={ id } style={styles.line}>
-                <Text style={styles.lineText}>{ `${capitalizeFristLetter(name)} ${price}` }</Text>
-            </View>
+            <TouchableOpacity 
+                key={ id } 
+                onPress={() => navigationDetail({ product })}>
+
+                <View style={styles.line}>
+                    <Text style={styles.lineText}>{ `${capitalizeFristLetter(name)} ${price}` }</Text>
+                </View>
+            </TouchableOpacity>
         );
     });
 

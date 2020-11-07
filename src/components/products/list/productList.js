@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { capitalizeFristLetter } from '../../../utils/Utils';
 
 const ProductList = props => {
@@ -13,6 +13,9 @@ const ProductList = props => {
                 onPress={() => navigationDetail({ product })}>
 
                 <View style={styles.line}>
+                    <Image 
+                        style={styles.avatar}
+                        source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
                     <Text style={styles.lineText}>{ `${capitalizeFristLetter(name)} ${price}` }</Text>
                 </View>
             </TouchableOpacity>
@@ -28,19 +31,25 @@ const ProductList = props => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#e2f9ff'
+        backgroundColor: '#f0efef'
     },
     line: {
-        height: 40,
-        borderBottomWidth: 1,
-        borderBottomColor: '#bbb',
-
+        height: 60,
         alignItems: 'center',
         flexDirection: 'row'
     },
     lineText: {
         fontSize: 15,
-        paddingLeft: 15
+        paddingLeft: 15,
+        flex: 7
+    },
+    avatar: {
+        aspectRatio: 1,
+        width: 50,
+        flex: 1,
+
+        marginLeft: 15,
+        borderRadius: 50
     }
 });
 

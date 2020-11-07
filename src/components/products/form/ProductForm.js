@@ -9,13 +9,13 @@ export default class ProductForm extends React.Component {
         return (
             <View style={styles.container}>
                 <Image 
-                    source={{ uri: 'https://randomuser.me/api/portraits/thumb/men/75.jpg'}}
+                    source={{ uri: 'https://randomuser.me/api/portraits/women/66.jpg'}}
                     style={styles.avatar}/>
                     
                 <View style={styles.detail}>
                     <View style={styles.line}>
                         <Text style={styles.label}>Preço: </Text>
-                        <Text style={styles.content}>{ product.price}</Text>
+                        <Text style={styles.content}>R$ { product.price}</Text>
                     </View>
                 </View>
             </View>

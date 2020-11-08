@@ -1,5 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    TouchableOpacity, 
+    Image,
+    ScrollView } from 'react-native';
 import { capitalizeFristLetter } from '../../../utils/Utils';
 
 const ProductList = props => {
@@ -29,9 +35,9 @@ const ProductList = props => {
     });
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             { elements }
-        </View>
+        </ScrollView>
     );
 };
 

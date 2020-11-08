@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
+import Line from '../../../layout/Line';
 
 export default class ProductForm extends React.Component {
     render() {
@@ -11,17 +12,28 @@ export default class ProductForm extends React.Component {
                 <Image 
                     source={{ uri: 'https://randomuser.me/api/portraits/women/66.jpg'}}
                     style={styles.avatar}/>
-                    
-                <View style={styles.detail}>
-                    <View style={styles.line}>
-                        <Text style={styles.label}>Preço: </Text>
-                        <Text style={styles.content}>R$ { product.price}</Text>
-                    </View>
-                </View>
+                
+                <Line
+                    label='Descrição: '
+                    content={`R$ ${product.description}`}/>
+
+                <Line
+                    label='Preço: '
+                    content={`R$ ${product.price}`}/>
+
+                {checkDiscount(product.discount)}
             </View>
         );
     }
 };
+
+const checkDiscount = (discount) => {
+    return discount ?
+        (<Line
+            label='Desconto de: '
+            content={`${discount}%`}/>) :
+        (null);
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -29,23 +41,5 @@ const styles = StyleSheet.create({
     },
     avatar: {
         aspectRatio: 1
-    },
-    detail: {
-        marginTop: 20,
-        elevation: 1 
-    },
-    line: {
-        flexDirection: 'row',
-        paddingTop: 3,
-        paddingBottom: 3,
-    },
-    label: {
-        fontSize: 18,
-        paddingLeft: 5,
-        fontWeight: 'bold'
-    },
-    content: {
-        fontSize: 18,
-        paddingLeft: 5,
     }
 });

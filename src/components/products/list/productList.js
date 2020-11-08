@@ -5,51 +5,50 @@ import {
     StyleSheet, 
     TouchableOpacity, 
     Image,
-    ScrollView } from 'react-native';
+    FlatList } from 'react-native';
 import { capitalizeFristLetter } from '../../../utils/Utils';
+import RenderPrice from '../../../layout/list/RenderPrice';
 
 const ProductList = props => {
 
     const { products, navigationDetail } = props || [];
-    const elements =  products.map(product => {
-        const { id, name, price, description, oldPrice } = product;
-        return (
-            <TouchableOpacity 
-                key={ id } 
-                onPress={() => navigationDetail({ product })}>
-                
-                <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
-                
-                <View style={styles.line}>
-                    <Image 
-                        style={styles.avatar}
-                        source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
-                    <Text style={styles.description}>{ description }</Text>
-                </View>
-                <View style={styles.line}>
-                    <Text style={styles.lineText}>{ verifyPrice(price, oldPrice) }</Text>
-                </View>
-
-            </TouchableOpacity>
-        );
-    });
 
     return (
-        <ScrollView style={styles.container}>
-            { elements }
-        </ScrollView>
+        <FlatList 
+            style={styles.container}
+            data={products}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({ item }) => renderRows(item, navigationDetail)}/>
     );
 };
 
-const verifyPrice = (price, oldPrice) => {
-    return price && oldPrice ?
-     (<View style={styles.line}>
-        <Text style={styles.oldPrice}> De R$ { oldPrice } </Text> 
-        <Text style={styles.currentPrice}> 
-                Por R$ { price }
-        </Text>
-     </View>) :
-     (<Text style={styles.lineText}>R$ {price} </Text>);
+const renderRows = (product, navigationDetail) => {
+    const { id, name, price, description, oldPrice } = product;
+    return (
+        <TouchableOpacity 
+            key={ id } 
+            onPress={() => navigationDetail({ product })}>
+            
+            <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
+            
+            <View style={styles.line}>
+                <Image 
+                    style={styles.avatar}
+                    source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
+                <Text style={styles.description}>{ description }</Text>
+            </View>
+            <View style={styles.line}>
+                <Text style={styles.lineText}>
+                    { 
+                        <RenderPrice 
+                            price={price} 
+                            oldPrice={oldPrice}/> 
+                    }
+                </Text>
+            </View>
+
+        </TouchableOpacity>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -69,16 +68,6 @@ const styles = StyleSheet.create({
         fontSize: 15,
         paddingLeft: 15,
         flex: 7
-    },
-    currentPrice: {
-        fontSize: 15,
-        color: 'green',
-        marginLeft: 10
-    },
-    oldPrice: {
-        fontSize: 10,
-        color: 'red',
-        textDecorationLine: 'line-through',
     },
     description: {
         color: 'gray',

@@ -29,22 +29,22 @@ const renderRows = (product, navigationDetail) => {
             key={ id } 
             onPress={() => navigationDetail({ product })}>
             
-            <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
-            
-            <View style={styles.line}>
-                <Image 
-                    style={styles.avatar}
-                    source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
-                <Text style={styles.description}>{ description }</Text>
-            </View>
-            <View style={styles.line}>
-                <Text style={styles.lineText}>
+            <View style={styles.borderLine}>
+                <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
+                
+                <View style={styles.line}>
+                    <Image 
+                        style={styles.avatar}
+                        source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
+                    <Text style={styles.description}>{ description }</Text>
+                </View>
+                <View style={styles.price}>
                     { 
                         <RenderPrice 
                             price={price} 
                             oldPrice={oldPrice}/> 
                     }
-                </Text>
+                </View>
             </View>
 
         </TouchableOpacity>
@@ -58,16 +58,21 @@ const styles = StyleSheet.create({
     line: {
         height: 60,
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+    },
+    borderLine: {
+        borderBottomWidth: 1,
+        paddingTop: 5,
+        borderBottomColor: '#d6cbd3'
     },
     title : {
         fontWeight: 'bold',
         paddingLeft: 20
     },
-    lineText: {
+    price: {
         fontSize: 15,
         paddingLeft: 15,
-        flex: 7
+        paddingBottom: 15,
     },
     description: {
         color: 'gray',

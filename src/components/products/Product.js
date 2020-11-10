@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import Axios from 'axios';
 import ProductList from './list/productList';
+import ErrorComponent from '../../layout/error/ErrorComponent';
+import LoadingComponent from '../../layout/loading/LoadingComponent';
+
+import * as CONST from './../../helpers/Constants';
 
 export default class ProductComponent extends React.Component {
   constructor(props) {
@@ -10,12 +14,13 @@ export default class ProductComponent extends React.Component {
 
     this.state = {
       products: [],
-      loading: false
+      loading: false,
+      hasError: false
     };
   }
 
   componentDidMount() {
-    this.setState({loading: true})
+    this.setState({hasError: false, loading: true})
     Axios
       .get('http://192.168.55.101:8080/products')
         .then(resp => {
@@ -25,19 +30,44 @@ export default class ProductComponent extends React.Component {
             loading: false
           })
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          this.setState({
+            hasError: true, 
+            loading: false
+          });
+        });
+  }
+
+  renderError() {
+      return <ErrorComponent
+                hasError={this.state.hasError}
+                message={CONST.SOMETHING_IS_WROG}/>
+  }
+
+  loading() {
+    return <LoadingComponent
+                loading={this.state.loading}
+                hasError={this.state.hasError}
+                size={CONST.LARGE}
+                color={CONST.RED}/>
+
+  }
+
+  listProducts() {
+    return <ProductList 
+                products={this.state.products}
+                navigationDetail={(product) => this.props.navigation.navigate('ProductForm', product)}/>
   }
 
   render () {
     return (
       <View style={styles.container}>
           { 
-            this.state.loading ? 
-            <ActivityIndicator size='large' color='red'/> : 
-            <ProductList 
-                products={this.state.products}
-                navigationDetail={(product) => this.props.navigation.navigate('ProductForm', product)}/> 
+            !this.state.loading && !this.state.hasError ? 
+             this.listProducts() :
+             this.loading()
           }
+          { this.renderError() }
       </View>
     )
   }

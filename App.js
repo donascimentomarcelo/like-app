@@ -1,8 +1,9 @@
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import ProductComponent from './src/components/products/Product';
-import ProductForm from './src/components/products/form/ProductForm';
+import Product from './src/pages/products/Product';
+import ProductForm from './src/pages/products/form/ProductForm';
+import Login from './src/pages/login/Login';
 
 import * as CONST from './src/helpers/Constants'
 
@@ -10,8 +11,11 @@ import { capitalizeFristLetter } from './src/utils/Utils';
 
 
 const AppNavigator = createStackNavigator({
+  Login: {
+    screen: Login
+  },
   Main: {
-    screen: ProductComponent
+    screen: Product
   },
   ProductForm: {
     screen: ProductForm,

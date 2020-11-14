@@ -8,7 +8,7 @@ import LoadingComponent from '../../layout/loading/LoadingComponent';
 
 import * as CONST from './../../helpers/Constants';
 
-export default class ProductComponent extends React.Component {
+export default class Product extends React.Component {
   constructor(props) {
     super(props);
 

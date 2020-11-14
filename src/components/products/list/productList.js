@@ -7,18 +7,25 @@ import {
     Image,
     FlatList } from 'react-native';
 import { capitalizeFristLetter } from '../../../utils/Utils';
+
 import RenderPrice from '../../../layout/list/RenderPrice';
+import EmptyList from '../../../layout/list/EmptyList';
+
+import * as CONST from './../../../helpers/Constants';
 
 const ProductList = props => {
 
     const { products, navigationDetail } = props || [];
 
     return (
-        <FlatList 
-            style={styles.container}
-            data={products}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({ item }) => renderRows(item, navigationDetail)}/>
+        products.length > CONST.ZERO ?
+            <FlatList 
+                style={styles.container}
+                data={products}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => renderRows(item, navigationDetail)}/> :
+            <EmptyList
+                message={CONST.EMPTY_PRODUCT_LIST}/>
     );
 };
 

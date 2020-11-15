@@ -1,8 +1,17 @@
+import Axios from 'axios';
 import React from 'react';
-import { View, TextInput, StyleSheet, Button } from 'react-native';
+import { 
+    View, 
+    TextInput, 
+    StyleSheet, 
+    Button
+} from 'react-native';
 import FormRow from '../../layout/form/FormRow';
+import LoadingComponent from '../../layout/loading/LoadingComponent';
 
 import * as CONST from './../../helpers/Constants';
+import * as Env from './../../helpers/Env';
+
 
 export default class Login extends React.Component {
 
@@ -12,13 +21,36 @@ export default class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
+            loading: false
         };
     }
 
     onChangeHandler = (field, value) => this.setState({ [field]: value });
 
     login = () => {
-        console.log(this.state)
+        this.setState({ loading: true });
+        
+        Axios
+            .post(`${Env.LOCALHOST}${Env.LOGIN}`, this.state)
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error))
+            .then(() => this.setState({ loading: false }));
+    }
+
+    renderButton = () => {
+        if (this.state.loading) {
+            return <LoadingComponent
+                        loading={this.state.loading}
+                        size={CONST.LARGE}
+                        color={CONST.RED}/>
+        }
+
+        return (
+            <Button 
+                title={CONST.ENTER}
+                onPress={() => this.login()}
+                color={CONST.RED}/>
+        );
     }
 
     render() {
@@ -34,16 +66,13 @@ export default class Login extends React.Component {
                 <FormRow last>
                     <TextInput
                         style={styles.input}
-                        placeholder={CONST.PH_USERNAME}
+                        placeholder={CONST.PH_PASSWORD}
                         secureTextEntry
                         value={this.state.password}
                         onChangeText={value => this.onChangeHandler('password', value)}/>
                 </FormRow>
 
-                <Button 
-                    title={CONST.ENTER}
-                    onPress={() => this.login()}
-                    color={CONST.RED}/>
+                { this.renderButton() }
             </View>
         )
     }

@@ -1,4 +1,10 @@
+/** Title */
 export const TITLE = 'Like'; 
+export const ENTER = 'Entrar';
+
+/** Placeholder */
+export const PH_USERNAME = 'user.name';
+export const PH_PASSWORD = '*****';
 
 /** Number */
 export const ZERO = 0;

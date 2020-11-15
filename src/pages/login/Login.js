@@ -2,6 +2,8 @@ import React from 'react';
 import { View, TextInput, StyleSheet, Button } from 'react-native';
 import FormRow from '../../layout/form/FormRow';
 
+import * as CONST from './../../helpers/Constants';
+
 export default class Login extends React.Component {
 
     constructor(props) {
@@ -25,22 +27,23 @@ export default class Login extends React.Component {
                 <FormRow first>
                     <TextInput
                         style={styles.input}
-                        placeholder='user.name'
+                        placeholder={CONST.PH_USERNAME}
                         value={this.state.username}
                         onChangeText={value => this.onChangeHandler('username', value)}/>
                 </FormRow>
                 <FormRow last>
                     <TextInput
                         style={styles.input}
-                        placeholder='****'
+                        placeholder={CONST.PH_USERNAME}
                         secureTextEntry
                         value={this.state.password}
                         onChangeText={value => this.onChangeHandler('password', value)}/>
                 </FormRow>
 
                 <Button 
-                    title='Entrar'
-                    onPress={() => this.login()}/>
+                    title={CONST.ENTER}
+                    onPress={() => this.login()}
+                    color={CONST.RED}/>
             </View>
         )
     }

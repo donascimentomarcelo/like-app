@@ -49,7 +49,7 @@ export default class Product extends React.Component {
                 loading={this.state.loading}
                 hasError={this.state.hasError}
                 size={CONST.LARGE}
-                color={CONST.RED}/>
+                color={CONST.PRIMARY}/>
 
   }
 

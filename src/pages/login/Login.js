@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import FormRow from '../../layout/form/FormRow';
 import LoadingComponent from '../../layout/loading/LoadingComponent';
+import ErrorMessageComponent from '../../layout/message/ErrorMessage';
 
 import * as CONST from './../../helpers/Constants';
 import * as Env from './../../helpers/Env';
@@ -21,19 +22,24 @@ export default class Login extends React.Component {
         this.state = {
             username: '',
             password: '',
-            loading: false
+            loading: false,
+            hasError: false,
         };
     }
 
     onChangeHandler = (field, value) => this.setState({ [field]: value });
 
     login = () => {
+        const { username, password } = this.state;
         this.setState({ loading: true });
         
         Axios
-            .post(`${Env.LOCALHOST}${Env.LOGIN}`, this.state)
-            .then(resp => console.log(resp))
-            .catch(error => console.log(error))
+            .post(`${Env.LOCALHOST}${Env.LOGIN}`, { username, password })
+            .then(resp => {
+                console.log(resp)
+                this.setState({ hasError: false });
+            })
+            .catch((error) => this.setState({ hasError: true }))
             .then(() => this.setState({ loading: false }));
     }
 
@@ -41,16 +47,25 @@ export default class Login extends React.Component {
         if (this.state.loading) {
             return <LoadingComponent
                         loading={this.state.loading}
+                        hasError={this.state.hasError}
                         size={CONST.LARGE}
-                        color={CONST.RED}/>
+                        color={CONST.PRIMARY}/>
         }
 
         return (
             <Button 
                 title={CONST.ENTER}
                 onPress={() => this.login()}
-                color={CONST.RED}/>
-        );
+                color={CONST.PRIMARY}/>
+        );CONST
+    }
+
+    renderMessage = () => {
+        return (
+            <ErrorMessageComponent
+                message={CONST.AUTH_ERROR}
+                hasError={this.state.hasError}/>
+        )
     }
 
     render() {
@@ -73,6 +88,7 @@ export default class Login extends React.Component {
                 </FormRow>
 
                 { this.renderButton() }
+                { this.renderMessage() }
             </View>
         )
     }

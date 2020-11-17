@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Product from './src/pages/products/Product';
 import ProductForm from './src/pages/products/form/ProductForm';
 import Login from './src/pages/login/Login';
+import SignInForm from './src/pages/login/sign-in/SignIn';
 
 import * as CONST from './src/helpers/Constants'
 
@@ -28,18 +29,22 @@ const AppNavigator = createStackNavigator({
         }
       });
     }
+  }, 
+  SignInForm: {
+    screen: SignInForm,
+    navigationOptions: () =>  ({title: CONST.CREATE_ACCOUNT})
   }
 }, {
   defaultNavigationOptions: {
     title: CONST.TITLE,
-    headerTintColor: 'white',
+    headerTintColor: CONST.SECONDARY,
     headerStyle: {
-      backgroundColor: 'red',
+      backgroundColor: CONST.PRIMARY,
       borderBottomWidth: 1,
-      borderBottomColor: '#C5C5C5',
+      borderBottomColor: CONST.PRIMARY,
     },
     headerTitleStyle: {
-      color: 'white',
+      color: CONST.SECONDARY,
       fontSize: 20,
 
       flexGrow: 1,

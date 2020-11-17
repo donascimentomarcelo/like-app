@@ -1,11 +1,13 @@
 import Axios from 'axios';
 import React from 'react';
 import { 
-    View, 
+    View,
+    Text, 
     TextInput, 
     StyleSheet, 
     Button
 } from 'react-native';
+import ButtonOutline from '../../layout/button/ButtonOutline';
 import FormRow from '../../layout/form/FormRow';
 import LoadingComponent from '../../layout/loading/LoadingComponent';
 import ErrorMessageComponent from '../../layout/message/ErrorMessage';
@@ -43,6 +45,8 @@ export default class Login extends React.Component {
             .then(() => this.setState({ loading: false }));
     }
 
+    signIn = () => this.props.navigation.navigate('SignInForm')
+
     renderButton = () => {
         if (this.state.loading) {
             return <LoadingComponent
@@ -57,7 +61,7 @@ export default class Login extends React.Component {
                 title={CONST.ENTER}
                 onPress={() => this.login()}
                 color={CONST.PRIMARY}/>
-        );CONST
+        );
     }
 
     renderMessage = () => {
@@ -88,6 +92,11 @@ export default class Login extends React.Component {
                 </FormRow>
 
                 { this.renderButton() }
+
+                <ButtonOutline
+                        label={CONST.NEW}
+                        onPress={() => this.signIn()}/>
+
                 { this.renderMessage() }
             </View>
         )

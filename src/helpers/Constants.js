@@ -1,6 +1,7 @@
 /** Title */
 export const TITLE = 'Like'; 
 export const ENTER = 'Entrar';
+export const CREATE = 'Criar';
 export const CREATE_ACCOUNT = 'Criar Conta';
 export const NEW = 'Novo';
 
@@ -18,6 +19,9 @@ export const LARGE = 'large';
 /** Colors */
 export const PRIMARY = 'red';
 export const SECONDARY = 'white';
+
+/** Error Message */
+export const USER_CREATED = 'Usuário criado com sucesso!';
 
 /** Error Message */
 export const SOMETHING_IS_WROG = 'Algo deu errado...';

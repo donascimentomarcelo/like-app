@@ -32,7 +32,12 @@ const AppNavigator = createStackNavigator({
   }, 
   SignInForm: {
     screen: SignInForm,
-    navigationOptions: () =>  ({title: CONST.CREATE_ACCOUNT})
+    navigationOptions: () =>  {
+      return ({
+        title: CONST.CREATE_ACCOUNT,
+        headerTitleStyle: { textAlign: 'left' }
+      });
+    }
   }
 }, {
   defaultNavigationOptions: {

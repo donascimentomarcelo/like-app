@@ -38,7 +38,6 @@ export default class Login extends React.Component {
         Axios
             .post(`${Env.LOCALHOST}${Env.LOGIN}`, { username, password })
             .then(resp => {
-                console.log(resp)
                 this.setState({ hasError: false });
             })
             .catch((error) => this.setState({ hasError: true }))

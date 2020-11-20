@@ -20,7 +20,7 @@ export const LARGE = 'large';
 export const PRIMARY = 'red';
 export const SECONDARY = 'white';
 
-/** Error Message */
+/** Success Message */
 export const USER_CREATED = 'Usuário criado com sucesso!';
 
 /** Error Message */

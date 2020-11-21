@@ -1,7 +1,6 @@
 import Axios from 'axios';
 import React from 'react';
-import Toast from 'react-native-tiny-toast'
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View, Alert } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import FormRow from '../../../layout/form/FormRow';
 import LoadingComponent from '../../../layout/loading/LoadingComponent';
@@ -15,8 +14,8 @@ export default class SignIn extends React.Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
+            username: null,
+            password: null,
             loading: false,
             hasError: false,
         };
@@ -33,11 +32,13 @@ export default class SignIn extends React.Component {
             .then(resp => {
                 console.log(resp)
                 this.setState({ hasError: false });
-                Toast.showSuccess(CONST.USER_CREATED)
+                Alert.alert(CONST.USER_CREATED)
                 this.props.navigation.goBack();
             })
             .catch((error) => {
-                console.log(error)
+                error.response.data.errors.forEach(({ fieldName, message }) => {
+                    Alert.alert(fieldName, message);
+                })
                 this.setState({ hasError: true })
             })
             .then(() => this.setState({ loading: false }));
@@ -61,7 +62,7 @@ export default class SignIn extends React.Component {
         );
     }
 
-    formEmpty = () => this.state.username == '' || this.state.password == '';
+    formEmpty = () => this.state.username == null || this.state.password == null;
     
     render() {
         return (

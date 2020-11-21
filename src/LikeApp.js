@@ -1,10 +1,8 @@
 import React from 'react'
 import Router from './Router'
 
-const LikeApp = () => {
-    return (
-        <Router/>
-    );
-}
+const LikeApp = () =>  (
+    <Router/>
+);
 
 export default LikeApp;

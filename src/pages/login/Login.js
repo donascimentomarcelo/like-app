@@ -12,6 +12,8 @@ import FormRow from '../../layout/form/FormRow';
 import LoadingComponent from '../../layout/loading/LoadingComponent';
 import ErrorMessageComponent from '../../layout/message/ErrorMessage';
 
+import { setToken } from '../../utils/LoginUtils';
+
 import * as CONST from './../../helpers/Constants';
 import * as Env from './../../helpers/Env';
 
@@ -22,8 +24,8 @@ export default class Login extends React.Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
+            username: 'crane',
+            password: '1234',
             loading: false,
             hasError: false,
         };
@@ -38,13 +40,16 @@ export default class Login extends React.Component {
         Axios
             .post(`${Env.LOCALHOST}${Env.LOGIN}`, { username, password })
             .then(resp => {
+                const { headers } = resp;
                 this.setState({ hasError: false });
+                setToken(headers.authorization);
+                this.props.navigation.replace('Main');
             })
             .catch((error) => this.setState({ hasError: true }))
             .then(() => this.setState({ loading: false }));
     }
 
-    signIn = () => this.props.navigation.navigate('SignInForm')
+    signIn = () => this.props.navigation.navigate('SignInForm');
 
     renderButton = () => {
         if (this.state.loading) {

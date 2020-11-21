@@ -2,6 +2,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Product from './pages/products/Product';
+import Category from './pages/categories/Category';
 import ProductForm from './pages/products/form/ProductForm';
 import Login from './pages/login/Login';
 import SignInForm from './pages/login/sign-in/SignIn';
@@ -16,7 +17,7 @@ const App = createStackNavigator({
     screen: Login
   },
   Main: {
-    screen: Product
+    screen: Category
   },
   ProductForm: {
     screen: ProductForm,

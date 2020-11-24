@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, StyleSheet, ScrollView } from 'react-native';
 import Line from '../../../layout/Line';
 
-export default class ProductForm extends React.Component {
+export default class ProductDetails extends React.Component {
     render() {
 
         const {product} = this.props.navigation.state.params;

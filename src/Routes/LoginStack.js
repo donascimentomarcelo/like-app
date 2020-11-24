@@ -8,24 +8,22 @@ import * as CONST from './../helpers/Constants';
 const screens = {
     Login: {
         screen: Login,
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerTitle: () => <Header 
+                                        title={CONST.TITLE}
+                                        navigation={navigation}/>
+            }
+        }
     },
 };
 
 const LoginStack = createStackNavigator(screens, {
     defaultNavigationOptions: {
-        title: CONST.TITLE,
-        headerTintColor: CONST.SECONDARY,
-        headerStyle: {
+       headerStyle: {
           backgroundColor: CONST.PRIMARY,
           borderBottomWidth: 1,
           borderBottomColor: CONST.PRIMARY,
-        },
-        headerTitleStyle: {
-          color: CONST.SECONDARY,
-          fontSize: 20,
-    
-          flexGrow: 1,
-          textAlign: 'center'
         }
     }
 });

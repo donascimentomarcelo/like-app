@@ -8,27 +8,24 @@ import * as CONST from '../helpers/Constants';
 const screens = {
     Product: {
         screen: Product,
-
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerTitle: () => <Header 
+                                        title={CONST.PRODUCTS}
+                                        navigation={navigation}/>
+            }
+        }
     },
 };
 
 const ProductStack = createStackNavigator(screens, {
     defaultNavigationOptions: {
-        title: CONST.TITLE,
-        headerTintColor: CONST.SECONDARY,
         headerStyle: {
-          backgroundColor: CONST.PRIMARY,
-          borderBottomWidth: 1,
-          borderBottomColor: CONST.PRIMARY,
-        },
-        headerTitleStyle: {
-          color: CONST.SECONDARY,
-          fontSize: 20,
-    
-          flexGrow: 1,
-          textAlign: 'center'
-        }
-    }
+           backgroundColor: CONST.PRIMARY,
+           borderBottomWidth: 1,
+           borderBottomColor: CONST.PRIMARY,
+         }
+     }
 });
 
 export default ProductStack;

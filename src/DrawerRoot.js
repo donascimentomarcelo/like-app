@@ -1,9 +1,10 @@
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import ProductDetails from './pages/products/form/ProductDetails';
+
 
 import LoginStack from './Routes/LoginStack';
 import ProductStack from './Routes/ProductStack';
+import CategoryStack from './Routes/CategoryStack';
 
 const RootDrawer = createDrawerNavigator({
     Login: {
@@ -11,6 +12,9 @@ const RootDrawer = createDrawerNavigator({
     },
     Products: {
         screen: ProductStack
+    },
+    Caegorias: {
+        screen: CategoryStack
     },
 });
 

@@ -39,9 +39,9 @@ export default class Product extends React.Component {
   }
 
   renderError() {
-      return <ErrorComponent
-                hasError={this.state.hasError}
-                message={CONST.SOMETHING_IS_WROG}/>
+    return <ErrorComponent
+              hasError={this.state.hasError}
+              message={CONST.SOMETHING_IS_WROG}/>
   }
 
   loading() {
@@ -54,7 +54,6 @@ export default class Product extends React.Component {
   }
 
   listProducts() {
-    console.log(this.props.navigation)
     return <ProductList 
                 products={this.state.products}
                 navigationDetail={(product) => this.props.navigation.navigate('ProductDetails', product)}/>

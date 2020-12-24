@@ -1,6 +1,7 @@
 /** Title */
 export const TITLE = 'Like'; 
 export const PRODUCTS = 'Produtos'; 
+export const CATEGORIES = 'Categorias'; 
 export const ENTER = 'Entrar';
 export const CREATE = 'Criar';
 export const CREATE_ACCOUNT = 'Criar Conta';
@@ -27,4 +28,5 @@ export const USER_CREATED = 'Usuário criado com sucesso!';
 /** Error Message */
 export const SOMETHING_IS_WROG = 'Algo deu errado...';
 export const EMPTY_PRODUCT_LIST = 'Não existem produtos cadastrados';
+export const EMPTY_CATEGORY_LIST = 'Não existem categorias cadastrados';
 export const AUTH_ERROR = 'Erro de Autenticação';

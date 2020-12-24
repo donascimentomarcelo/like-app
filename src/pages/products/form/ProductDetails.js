@@ -1,6 +1,9 @@
+import { Text, View } from 'native-base';
 import React from 'react';
 import { Image, StyleSheet, ScrollView } from 'react-native';
+import CommentContainer from '../../../layout/comment/CommentContainer';
 import Line from '../../../layout/Line';
+import * as CONST from './../../../helpers/Constants';
 
 export default class ProductDetails extends React.Component {
     render() {
@@ -10,7 +13,7 @@ export default class ProductDetails extends React.Component {
         return (
             <ScrollView style={styles.container}>
                 <Image 
-                    source={{ uri: 'https://randomuser.me/api/portraits/women/66.jpg'}}
+                    source={{ uri: 'https://source.unsplash.com/collection/190727/1600x900'}}
                     style={styles.avatar}/>
                 
                 <Line
@@ -22,6 +25,13 @@ export default class ProductDetails extends React.Component {
                     content={`R$ ${product.price}`}/>
 
                 {checkDiscount(product.discount)}
+
+                <CommentContainer
+                    allComments={true}
+                    label={CONST.COMMENTS}
+                    comments={product.comments}
+                    navigationFn={() => this.props.navigation.navigate('CommentList', product.comments)}/>
+                    
             </ScrollView>
         );
     }

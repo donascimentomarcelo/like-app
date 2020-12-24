@@ -5,9 +5,11 @@ import Header from '../layout/header/Header';
 
 import * as CONST from '../helpers/Constants';
 
+import { capitalizeFristLetter } from '../utils/Utils';
+
 import Product from '../pages/products/Product';
 import ProductDetails from '../pages/products/form/ProductDetails';
-import { capitalizeFristLetter } from '../utils/Utils';
+import Comment from '../pages/comments/Comment';
 
 const screens = {
     Product: {
@@ -31,7 +33,15 @@ const screens = {
                                         detailsType={true}/>
             }
         }
-    }
+    },
+    CommentList: {
+        screen: Comment,
+        navigationOptions: () => {
+            return {
+                headerTitle: CONST.COMMENTS
+            }
+        }
+    },
 };
 
 const ProductStack = createStackNavigator(screens, {

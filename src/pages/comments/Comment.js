@@ -1,0 +1,16 @@
+import React, { Component } from 'react'
+import { Text, StyleSheet, View } from 'react-native'
+import CommentContainer from '../../layout/comment/CommentContainer';
+
+export default class Comment extends Component {
+    render() {
+        const comments = this.props.navigation.state.params;
+        return (
+            <CommentContainer
+                allComments={false}
+                comments={comments}/>
+        )
+    }
+}
+
+const styles = StyleSheet.create({})

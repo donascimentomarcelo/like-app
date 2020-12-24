@@ -6,6 +6,10 @@ export const ENTER = 'Entrar';
 export const CREATE = 'Criar';
 export const CREATE_ACCOUNT = 'Criar Conta';
 export const NEW = 'Novo';
+export const COMMENTS = 'Comentários';
+export const QUESTIONS = 'Perguntas';
+export const READ_ALL_COMMENTS = 'Ler todos os comentários';
+export const READ_ALL_QUESTIONS = 'Ler todos as perguntas';
 
 /** Placeholder */
 export const PH_USERNAME = 'user.name';

@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
 import CategoryList from './list/CategoryList';
 
-import * as CONST from './../../helpers/Constants';
 import * as Env from './../../helpers/Env';
 import Axios from 'axios';
 

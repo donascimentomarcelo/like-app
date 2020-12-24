@@ -13,7 +13,7 @@ const RootDrawer = createDrawerNavigator({
     Products: {
         screen: ProductStack
     },
-    Caegorias: {
+    Category: {
         screen: CategoryStack
     },
 });

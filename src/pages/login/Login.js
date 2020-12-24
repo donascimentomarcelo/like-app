@@ -47,7 +47,7 @@ export default class Login extends React.Component {
                 const { headers } = resp;
                 this.setState({ hasError: false });
                 setToken(headers.authorization);
-                this.props.navigation.replace('Main');
+                this.props.navigation.navigate('Category');
             })
             .catch((error) => this.setState({ hasError: true }))
             .then(() => this.setState({ loading: false }));

@@ -10,6 +10,7 @@ import { capitalizeFristLetter } from '../utils/Utils';
 import Product from '../pages/products/Product';
 import ProductDetails from '../pages/products/form/ProductDetails';
 import Comment from '../pages/comments/Comment';
+import Question from '../pages/questions/Question';
 
 const screens = {
     Product: {
@@ -39,6 +40,14 @@ const screens = {
         navigationOptions: () => {
             return {
                 headerTitle: CONST.COMMENTS
+            }
+        }
+    },
+    QuestionList: {
+        screen: Question,
+        navigationOptions: () => {
+            return {
+                headerTitle: CONST.QUESTIONS
             }
         }
     },

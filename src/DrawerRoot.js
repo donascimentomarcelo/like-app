@@ -7,14 +7,14 @@ import ProductStack from './Routes/ProductStack';
 import CategoryStack from './Routes/CategoryStack';
 
 const RootDrawer = createDrawerNavigator({
-    Login: {
-        screen: LoginStack
-    },
     Products: {
         screen: ProductStack
     },
     Category: {
         screen: CategoryStack
+    },
+    Login: {
+        screen: LoginStack
     },
 });
 

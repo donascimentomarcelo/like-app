@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import CommentContainer from '../../layout/comment/CommentContainer';
 
 export default class Comment extends Component {

@@ -3,6 +3,7 @@ import React from 'react';
 import { Image, StyleSheet, ScrollView } from 'react-native';
 import CommentContainer from '../../../layout/comment/CommentContainer';
 import Line from '../../../layout/Line';
+import QuestionContainer from '../../../layout/question/QuestionContainer';
 import * as CONST from './../../../helpers/Constants';
 
 export default class ProductDetails extends React.Component {
@@ -31,6 +32,12 @@ export default class ProductDetails extends React.Component {
                     label={CONST.COMMENTS}
                     comments={product.comments}
                     navigationFn={() => this.props.navigation.navigate('CommentList', product.comments)}/>
+
+                <QuestionContainer
+                    allQuestions={true}
+                    label={CONST.QUESTIONS}
+                    questions={product.questions}
+                    navigationFn={() => this.props.navigation.navigate('QuestionList', product.questions)}/>
                     
             </ScrollView>
         );

@@ -1,13 +1,13 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import ButtonGroup from '../button/ButtonGroup';
-import ButtonOutline from '../button/ButtonOutline';
-import * as CONST from './../../helpers/Constants';
+import ButtonGroup from '../../button/ButtonGroup';
+import ButtonOutline from '../../button/ButtonOutline';
+import * as CONST from '../../../helpers/Constants';
 
 const QuestionContainer = ({label, questions, allQuestions, navigationFn}) => {
     return (
         <View>
-            <Text style={styles.title}>{label}</Text>
+            { showTitle(questions, label, allQuestions) }
             {
                 questions.map((question, i) => (
                     <View key={i} style={styles.items}>
@@ -22,6 +22,14 @@ const QuestionContainer = ({label, questions, allQuestions, navigationFn}) => {
             { showButton(allQuestions, questions, navigationFn) }
         </View>
     )
+}
+
+const showTitle = (questions, label, allQuestions) => {
+    if (allQuestions && questions.length) {
+        return (
+            <Text style={styles.title}>{label}</Text>
+        );
+    }
 }
 
 const showReplies = (allQuestions, replies) => {
@@ -60,7 +68,6 @@ const styles = StyleSheet.create({
         marginBottom: 15
     },
     description: {
-        fontWeight: 'bold',
         paddingLeft: 7,
         paddingRight: 7,
         marginTop: 5

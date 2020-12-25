@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import StarRating from 'react-native-star-rating';
-import ButtonGroup from '../button/ButtonGroup';
-import ButtonOutline from '../button/ButtonOutline';
-import * as CONST from '../../helpers/Constants';
+import ButtonGroup from '../../button/ButtonGroup';
+import ButtonOutline from '../../button/ButtonOutline';
+
+import * as CONST from '../../../helpers/Constants';
 
 const CommentContainer = ({comments, label, allComments, navigationFn = () => null}) => {
     return (
         <View>
-            <Text style={styles.title}>{label}</Text>
+            { showTitle(comments, label, allComments) }
             {
                 comments.map((comment, i) => (
                     <View key={i} style={styles.items}>
@@ -28,6 +29,14 @@ const CommentContainer = ({comments, label, allComments, navigationFn = () => nu
             { showButton(allComments, comments, navigationFn) }
         </View>
     )
+}
+
+const showTitle = (comments, label, allComments) => {
+    if (allComments && comments.length) {
+        return (
+            <Text style={styles.title}>{label}</Text>
+        );
+    }
 }
 
 const showButton = (allComments, comments, navigationFn) => {

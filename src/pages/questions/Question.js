@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import QuestionContainer from '../../layout/question/QuestionContainer';
+import QuestionContainer from '../../layout/containers/question/QuestionContainer';
 
 export default class Question extends Component {
     render() {

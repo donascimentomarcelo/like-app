@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
-import CommentContainer from '../../layout/comment/CommentContainer';
+import CommentContainer from '../../layout/containers/comment/CommentContainer';
+
 
 export default class Comment extends Component {
     render() {

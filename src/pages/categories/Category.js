@@ -42,7 +42,7 @@ export default class Category extends Component {
             <View style={styles.container}>
                 <CategoryList
                     categories={this.state.categories}
-                    navigationDetail={(category) => this.props.navigation.navigate('CategoryDetails', category)}/>
+                    navigationDetail={(category) => this.props.navigation.navigate('ProductByCategory', category)}/>
             </View>
         )
     }

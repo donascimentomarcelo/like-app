@@ -20,62 +20,76 @@ export default class Product extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({hasError: false, loading: true})
+    let products = [];
+
+    if (this.props.navigation.state.params) {
+      products = this.props.navigation.state.params.category.products;
+    }
+
+    if (!products.length) {
+      this.getAllProducts();
+      return;
+    }
+    this.setState({ products });
+  }
+
+  getAllProducts() {
+    this.setState({ hasError: false, loading: true });
     Axios
       .get('http://192.168.55.101:8080/products')
-        .then(resp => {
-          const { data } = resp;
-          this.setState({
-            products: data,
-            loading: false
-          })
-        })
-        .catch(error => {
-          this.setState({
-            hasError: true, 
-            loading: false
-          });
+      .then(resp => {
+        const { data } = resp;
+        this.setState({
+          products: data,
+          loading: false
         });
+      })
+      .catch(error => {
+        this.setState({
+          hasError: true,
+          loading: false
+        });
+      });
   }
 
   renderError() {
     return <ErrorComponent
-              hasError={this.state.hasError}
-              message={CONST.SOMETHING_IS_WROG}/>
+      hasError={this.state.hasError}
+      message={CONST.SOMETHING_IS_WROG} />
   }
 
   loading() {
     return <LoadingComponent
-                loading={this.state.loading}
-                hasError={this.state.hasError}
-                size={CONST.LARGE}
-                color={CONST.PRIMARY}/>
+      loading={this.state.loading}
+      hasError={this.state.hasError}
+      size={CONST.LARGE}
+      color={CONST.PRIMARY} />
 
   }
 
   listProducts() {
-    return <ProductList 
-                products={this.state.products}
-                navigationDetail={(product) => this.props.navigation.navigate('ProductDetails', product)}/>
+    return <ProductList
+      products={this.state.products}
+      navigationDetail={(product) => this.props.navigation.navigate('ProductDetails', product)} />
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.container}>
-          { 
-            !this.state.loading && !this.state.hasError ? 
-             this.listProducts() :
-             this.loading()
-          }
-          { this.renderError() }
+        {
+          !this.state.loading && !this.state.hasError ?
+            this.listProducts() :
+            this.loading()
+        }
+        { this.renderError()}
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center'
-    }
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  }
 })

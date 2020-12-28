@@ -4,7 +4,6 @@ import CommentContainer from '../../../layout/containers/comment/CommentContaine
 import LineContainer from '../../../layout/containers/line/LineContainer';
 import QuestionContainer from '../../../layout/containers/question/QuestionContainer';
 import Footer from '../../../layout/footer/Footer';
-import Line from '../../../layout/Line';
 import * as CONST from './../../../helpers/Constants';
 
 export default class ProductDetails extends React.Component {

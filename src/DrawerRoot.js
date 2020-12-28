@@ -7,11 +7,11 @@ import ProductStack from './Routes/ProductStack';
 import CategoryStack from './Routes/CategoryStack';
 
 const RootDrawer = createDrawerNavigator({
-    Products: {
-        screen: ProductStack
-    },
     Category: {
         screen: CategoryStack
+    },
+    Products: {
+        screen: ProductStack
     },
     Login: {
         screen: LoginStack

@@ -26,12 +26,12 @@ const renderRows = (category, navigationDetail) => {
             onPress={() => navigationDetail({ category })}>
             
             <View style={styles.borderLine}>
-                <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
-                
                 <View style={styles.line}>
                     <Image 
                         style={styles.avatar}
-                        source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
+                        source={{ uri: 'https://source.unsplash.com/collection/190727/1600x900' }}/>
+
+                    <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
                 </View>
             </View>
 
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         aspectRatio: 1,
         width: 50,
         height: 50,
-        flex: 1,
+        // flex: 1,
 
         marginLeft: 15,
         borderRadius: 50

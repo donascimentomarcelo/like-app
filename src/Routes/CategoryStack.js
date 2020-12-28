@@ -7,6 +7,7 @@ import * as CONST from '../helpers/Constants';
 
 import { capitalizeFristLetter } from '../utils/Utils';
 import Category from '../pages/categories/Category';
+import Product from '../pages/products/Product';
 
 const screens = {
     Category: {
@@ -19,18 +20,14 @@ const screens = {
             }
         }
     },
-    // ProductDetails: {
-    //     screen: ProductDetails,
-    //     navigationOptions: ({ navigation }) => {
-    //         const productName = navigation.state.params.product.name;
-    //         return {
-    //             headerTitle: () => <Header 
-    //                                     title={capitalizeFristLetter(productName)}
-    //                                     navigation={navigation}
-    //                                     detailsType={true}/>
-    //         }
-    //     }
-    // }
+    ProductByCategory: {
+        screen: Product,
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerTitle: CONST.PRODUCTS
+            }
+        }
+    },
 };
 
 const CategoryStack = createStackNavigator(screens, {

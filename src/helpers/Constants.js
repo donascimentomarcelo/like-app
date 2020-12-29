@@ -18,6 +18,7 @@ export const PH_PASSWORD = '*****';
 /** Number */
 export const ZERO = 0;
 export const EIGHT = 8;
+export const ONE = 1;
 
 /** Sizes */
 export const LARGE = 'large';

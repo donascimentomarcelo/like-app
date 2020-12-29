@@ -38,7 +38,9 @@ export default class ProductDetails extends React.Component {
                     allQuestions={true}
                     label={CONST.QUESTIONS}
                     questions={product.questions}
-                    navigationFn={() => this.props.navigation.navigate('QuestionList', product.questions)} />
+                    navigationFn={() => this.props.navigation.navigate('QuestionList', product.questions)}
+                    showAll={false}
+                    quantity={CONST.ONE} />
 
                 <Footer />
             </ScrollView>

@@ -8,7 +8,8 @@ export default class Question extends Component {
         return (
             <QuestionContainer
                 allQuestions={false}
-                questions={querstions}/>
+                questions={querstions}
+                showAll={true}/>
         )
     }
 }

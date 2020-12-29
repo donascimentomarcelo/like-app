@@ -3,21 +3,18 @@ import { StyleSheet, Text, View } from 'react-native'
 import ButtonGroup from '../../button/ButtonGroup';
 import ButtonOutline from '../../button/ButtonOutline';
 import * as CONST from '../../../helpers/Constants';
+import { filterArrayByQuantity } from '../../../utils/Utils';
+import QuestionList from '../../../pages/questions/list/QuestionList';
 
-const QuestionContainer = ({label, questions, allQuestions, navigationFn}) => {
+const QuestionContainer = ({label, questions, allQuestions, navigationFn, showAll, quantity = 0}) => {
+    questions = filterArrayByQuantity(questions, showAll, quantity);
+    
     return (
         <View>
             { showTitle(questions, label, allQuestions) }
-            {
-                questions.map((question, i) => (
-                    <View key={i} style={styles.items}>
-                        <Text style={styles.description}>{question.description}</Text>
-                        
-                        {showReplies(allQuestions, question.reply)}
 
-                    </View>
-                ))
-            }
+            <QuestionList
+                questions={questions}/>
             
             { showButton(allQuestions, questions, navigationFn) }
         </View>
@@ -29,16 +26,6 @@ const showTitle = (questions, label, allQuestions) => {
         return (
             <Text style={styles.title}>{label}</Text>
         );
-    }
-}
-
-const showReplies = (allQuestions, replies) => {
-    if (!allQuestions && replies.length) {
-        return replies.map((reply, i) => (
-            <View key={i} style={styles.replyContainer}>
-                <Text style={styles.reply}> {reply.description} </Text>
-            </View>
-        ))
     }
 }
 
@@ -63,20 +50,5 @@ const styles = StyleSheet.create({
         paddingLeft: 7,
         marginTop: 10,
         marginBottom: 10,
-    },
-    items: {
-        marginBottom: 15
-    },
-    description: {
-        paddingLeft: 7,
-        paddingRight: 7,
-        marginTop: 5
-    },
-    replyContainer: {
-        paddingLeft: 20,
-        marginTop: 5
-    },
-    reply: {
-        color: 'gray' 
-    },
+    }
 })

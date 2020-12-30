@@ -5,6 +5,7 @@ import ButtonOutline from '../../button/ButtonOutline';
 import * as CONST from '../../../helpers/Constants';
 import { filterArrayByQuantity } from '../../../utils/Utils';
 import QuestionList from '../../../pages/questions/list/QuestionList';
+import Title from '../../header/Title';
 
 const QuestionContainer = ({label, questions, allQuestions, navigationFn, showAll, quantity = 0}) => {
     questions = filterArrayByQuantity(questions, showAll, quantity);
@@ -24,7 +25,8 @@ const QuestionContainer = ({label, questions, allQuestions, navigationFn, showAl
 const showTitle = (questions, label, allQuestions) => {
     if (allQuestions && questions.length) {
         return (
-            <Text style={styles.title}>{label}</Text>
+            <Title
+                label={label}/>
         );
     }
 }

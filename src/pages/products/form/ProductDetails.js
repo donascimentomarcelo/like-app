@@ -40,6 +40,7 @@ export default class ProductDetails extends React.Component {
                     questions={product.questions}
                     navigationFn={() => this.props.navigation.navigate('QuestionList', product.questions)}
                     showAll={false}
+                    showForm={true}
                     quantity={CONST.ONE} />
 
                 <Footer />

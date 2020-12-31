@@ -9,7 +9,8 @@ export default class Question extends Component {
             <QuestionContainer
                 allQuestions={false}
                 questions={querstions}
-                showAll={true}/>
+                showAll={true}
+                showForm={false}/>
         )
     }
 }

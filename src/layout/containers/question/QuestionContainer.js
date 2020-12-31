@@ -1,56 +1,26 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import ButtonGroup from '../../button/ButtonGroup';
-import ButtonOutline from '../../button/ButtonOutline';
-import * as CONST from '../../../helpers/Constants';
+import { StyleSheet, View } from 'react-native'
 import { filterArrayByQuantity } from '../../../utils/Utils';
 import QuestionList from '../../../pages/questions/list/QuestionList';
 import Title from '../../header/Title';
 
-const QuestionContainer = ({label, questions, allQuestions, navigationFn, showAll, quantity = 0}) => {
-    questions = filterArrayByQuantity(questions, showAll, quantity);
-    
+const QuestionContainer = ({ label, questions, allQuestions, navigationFn, showAll, showForm, quantity = 0 }) => {
+
     return (
         <View>
-            { showTitle(questions, label, allQuestions) }
+            <Title
+                label={label} />
 
             <QuestionList
-                questions={questions}/>
-            
-            { showButton(allQuestions, questions, navigationFn) }
+                questions={filterArrayByQuantity(questions, showAll, quantity)}
+                allQuestions={allQuestions}
+                navigationFn={navigationFn}
+                showForm={showForm} />
+
         </View>
     )
 }
 
-const showTitle = (questions, label, allQuestions) => {
-    if (allQuestions && questions.length) {
-        return (
-            <Title
-                label={label}/>
-        );
-    }
-}
-
-const showButton = (allQuestions, questions, navigationFn) => {
-    if (allQuestions && questions.length) {
-        return (
-            <ButtonGroup>
-                <ButtonOutline
-                    label={CONST.READ_ALL_QUESTIONS}
-                    onPress={() => navigationFn() }/>
-            </ButtonGroup>
-        );
-    }
-}
-
 export default QuestionContainer
 
-const styles = StyleSheet.create({
-    title: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        paddingLeft: 7,
-        marginTop: 10,
-        marginBottom: 10,
-    }
-})
+const styles = StyleSheet.create({})

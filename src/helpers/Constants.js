@@ -4,16 +4,18 @@ export const PRODUCTS = 'Produtos';
 export const CATEGORIES = 'Categorias'; 
 export const ENTER = 'Entrar';
 export const CREATE = 'Criar';
+export const SEND = 'Enviar';
 export const CREATE_ACCOUNT = 'Criar Conta';
 export const NEW = 'Novo';
 export const COMMENTS = 'Comentários';
-export const QUESTIONS = 'Perguntas';
+export const QUESTIONS = 'Pergunte ao vendedor';
 export const READ_ALL_COMMENTS = 'Ler todos os comentários';
 export const READ_ALL_QUESTIONS = 'Ler todos as perguntas';
 
 /** Placeholder */
 export const PH_USERNAME = 'user.name';
 export const PH_PASSWORD = '*****';
+export const WRITE_YOUR_QUESTION = 'Escreva sua pergunta...';
 
 /** Number */
 export const ZERO = 0;

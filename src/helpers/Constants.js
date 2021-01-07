@@ -16,11 +16,13 @@ export const READ_ALL_QUESTIONS = 'Ler todos as perguntas';
 export const PH_USERNAME = 'user.name';
 export const PH_PASSWORD = '*****';
 export const WRITE_YOUR_QUESTION = 'Escreva sua pergunta...';
+export const SEARCH_PRODUCTS = 'Pesquise por produtos...';
 
 /** Number */
 export const ZERO = 0;
 export const EIGHT = 8;
 export const ONE = 1;
+export const TWO = 2;
 
 /** Sizes */
 export const LARGE = 'large';

@@ -32,6 +32,8 @@ export default class ProductDetails extends React.Component {
                     allComments={true}
                     label={CONST.COMMENTS}
                     comments={product.comments}
+                    showAll={false}
+                    quantity={CONST.ONE}
                     navigationFn={() => this.props.navigation.navigate('CommentList', product.comments)} />
 
                 <QuestionContainer

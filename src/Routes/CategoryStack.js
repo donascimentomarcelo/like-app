@@ -16,6 +16,7 @@ const screens = {
             return {
                 headerTitle: () => <Header 
                                         title={CONST.CATEGORIES}
+                                        searchBar={true}
                                         navigation={navigation}/>
             }
         }

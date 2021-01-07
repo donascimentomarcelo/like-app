@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import HeaderTitle from './HeaderTitle';
+import SearchBar from './SearchBar';
 
-const Header = props => {
-    const { navigation, detailsType = false } = props;
+const Header = ({ navigation, detailsType = false, title, searchBar }) => {
     
     const openMenu = () => navigation.openDrawer();
 
@@ -25,7 +26,9 @@ const Header = props => {
                 styles.headerAlignCenter : 
                 null]}>
             { renderMenu() }
-            <Text style={styles.headerText}>{props.title}</Text>
+
+            { searchBar ? <SearchBar/> : <HeaderTitle title={title}/> }
+
         </View>
     )
 };
@@ -40,12 +43,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    headerText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#fff',
-        letterSpacing: 1,
-    },
+
     icon: {
         position: 'absolute',
         left: 16,

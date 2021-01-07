@@ -19,6 +19,7 @@ const screens = {
             return {
                 headerTitle: () => <Header 
                                         title={CONST.PRODUCTS}
+                                        searchBar={true}
                                         navigation={navigation}/>
             }
         }

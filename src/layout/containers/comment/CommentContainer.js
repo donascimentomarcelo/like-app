@@ -6,14 +6,24 @@ import ButtonOutline from '../../button/ButtonOutline';
 import * as CONST from '../../../helpers/Constants';
 import CommentsList from '../../../pages/comments/list/CommentsList';
 import Title from '../../header/Title';
+import { filterArrayByQuantity } from '../../../utils/Utils';
 
-const CommentContainer = ({comments, label, allComments, navigationFn = () => null}) => {
+const CommentContainer = (
+    {
+        comments, 
+        label, 
+        allComments, 
+        showAll, 
+        quantity = 0, 
+        navigationFn = () => null
+    }) => {
+
     return (
         <View>
             { showTitle(comments, label, allComments) }
 
             <CommentsList
-                comments={comments}/>
+                comments={filterArrayByQuantity(comments, showAll, quantity)}/>
             
             { showButton(allComments, comments, navigationFn) }
         </View>

@@ -6,8 +6,6 @@ import QuestionForm from '../../../layout/containers/question/QuestionForm'
 import Reply from '../../../layout/containers/reply/Reply'
 import * as CONST from './../../../helpers/Constants'
 
-
-
 const QuestionList = props => {
 
     const { allQuestions, navigationFn, showForm } = props;

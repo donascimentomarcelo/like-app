@@ -27,7 +27,7 @@ const Header = ({ navigation, detailsType = false, title, searchBar }) => {
                 null]}>
             { renderMenu() }
 
-            { searchBar ? <SearchBar/> : <HeaderTitle title={title}/> }
+            { searchBar ? <SearchBar navigation={navigation}/> : <HeaderTitle title={title}/> }
 
         </View>
     )

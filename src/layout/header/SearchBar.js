@@ -7,14 +7,13 @@ import Axios from 'axios';
 import * as Env from './../../helpers/Env'
 import Autocomplete from '../autocomplete/Autocomplete';
 
-const SearchBar = () => {
+const SearchBar = ({navigation}) => {
 
     const [items, setItems] = React.useState([]);
 
     const cleanSearch = () => null;
 
     const handleSearch = async text => {
-        
         if (text && text.length > CONST.TWO) {
         await Axios
                 .get(`${Env.LOCALHOST}${Env.PRODUCTS}/findByProductsOrCategories?text=${text}`)
@@ -28,20 +27,30 @@ const SearchBar = () => {
         setItems([])
     }
 
+    const productDetail = product => navigation.navigate('ProductDetails', { product })
+
     return (
         <FormSearchBar>
             <Item>
-                <Icon name="search" />
+                <Icon name="search" style={ styles.search }/>
                 <Input placeholder={CONST.SEARCH_PRODUCTS}
                     onChangeText={handleSearch} />
-                <Icon name="close" onPress={cleanSearch} />
+                <Icon name="close" onPress={cleanSearch} style={ styles.close }/>
             </Item>
             <Autocomplete
-                items={items}/>
+                items={items}
+                onClickFn={productDetail}/>
         </FormSearchBar>
     )
 }
 
 export default SearchBar
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    search: {
+        paddingLeft: 15
+    },
+    close: {
+        paddingRight: 15
+    }
+})

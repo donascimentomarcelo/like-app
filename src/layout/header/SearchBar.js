@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { Button, StyleSheet } from 'react-native'
 import * as CONST from './../../helpers/Constants'
 import FormSearchBar from '../form/FormSearchBar';
 import { Item, Input, Icon } from 'native-base';
@@ -7,15 +7,21 @@ import Axios from 'axios';
 import * as Env from './../../helpers/Env'
 import Autocomplete from '../autocomplete/Autocomplete';
 
-const SearchBar = ({navigation}) => {
+const SearchBar = ({ navigation }) => {
 
     const [items, setItems] = React.useState([]);
+    const [search, setSearch] = React.useState('');
 
-    const cleanSearch = () => null;
+    const cleanSearch = () => {
+        setSearch('');
+        setItems([]);
+    };
 
-    const handleSearch = async text => {
+    const onChange = async text => {
+        setSearch(text)
+
         if (text && text.length > CONST.TWO) {
-        await Axios
+            await Axios
                 .get(`${Env.LOCALHOST}${Env.PRODUCTS}/findByProductsOrCategories?text=${text}`)
                 .then(resp => {
                     const { data } = resp;
@@ -27,19 +33,28 @@ const SearchBar = ({navigation}) => {
         setItems([])
     }
 
-    const productDetail = product => navigation.navigate('ProductDetails', { product })
+    const productDetail = product => {
+        navigation.navigate('ProductDetails', { product });
+        cleanSearch();
+    }
 
     return (
         <FormSearchBar>
             <Item>
-                <Icon name="search" style={ styles.search }/>
-                <Input placeholder={CONST.SEARCH_PRODUCTS}
-                    onChangeText={handleSearch} />
-                <Icon name="close" onPress={cleanSearch} style={ styles.close }/>
+                <Icon name="search" style={styles.search} />
+                <Input
+                    placeholder={CONST.SEARCH_PRODUCTS}
+                    onChangeText={onChange}
+                    value={search}
+                />
+                <Icon
+                    onPress={() => cleanSearch()}
+                    name="close"
+                    style={styles.close} />
             </Item>
             <Autocomplete
                 items={items}
-                onClickFn={productDetail}/>
+                onClickFn={productDetail} />
         </FormSearchBar>
     )
 }

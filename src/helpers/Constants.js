@@ -1,5 +1,6 @@
 /** Title */
 export const TITLE = 'Like'; 
+export const NEW_USER = 'Novo Usuário'; 
 export const PRODUCTS = 'Produtos'; 
 export const CATEGORIES = 'Categorias'; 
 export const ENTER = 'Entrar';

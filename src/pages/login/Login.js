@@ -53,7 +53,7 @@ export default class Login extends React.Component {
             .then(() => this.setState({ loading: false }));
     }
 
-    signIn = () => this.props.navigation.navigate('SignInForm');
+    signIn = () => this.props.navigation.navigate('SignIn');
 
     renderButton = () => {
         if (this.state.loading) {

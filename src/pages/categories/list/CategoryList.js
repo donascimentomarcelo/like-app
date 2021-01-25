@@ -5,14 +5,25 @@ import EmptyList from '../../../layout/list/EmptyList'
 import { capitalizeFristLetter } from '../../../utils/Utils'
 import * as CONST from './../../../helpers/Constants'
 
-const CategoryList = ({ categories, navigationDetail }) => {
+const CategoryList = ({ categories, navigationDetail, onRefreshFn }) => {
+
+    const [isFetching, setIsFetching] = React.useState(false);
+
+    const onRefresh = () => {
+        setIsFetching(true);
+        onRefreshFn();
+        setIsFetching(false);
+    }
+
     return (
         categories.length > CONST.ZERO ?
             <FlatList
                 style={styles.container}
                 data={categories}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({item}) => renderRows(item, navigationDetail)}/> :
+                renderItem={({item}) => renderRows(item, navigationDetail)}
+                onRefresh={() => onRefresh()}
+                refreshing={isFetching}/> :
             <EmptyList 
                 message={CONST.EMPTY_CATEGORY_LIST}/>
     )

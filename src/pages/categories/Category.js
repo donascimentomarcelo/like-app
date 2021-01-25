@@ -40,6 +40,17 @@ export default class Category extends Component {
       });
   }
 
+  onRefresh = () => {
+    Axios
+      .get(`${Env.LOCALHOST}${Env.CATEGORIES}`)
+      .then(resp => {
+        const { data } = resp;
+        this.setState({
+          categories: data,
+        });
+      })
+  }
+
 
   renderError() {
     return <ErrorComponent
@@ -58,7 +69,8 @@ export default class Category extends Component {
   listCategories() {
     return <CategoryList
       categories={this.state.categories}
-      navigationDetail={(category) => this.props.navigation.navigate('ProductByCategory', category)} />
+      navigationDetail={(category) => this.props.navigation.navigate('ProductByCategory', category)}
+      onRefreshFn={() => this.onRefresh()} />
   }
 
   render() {

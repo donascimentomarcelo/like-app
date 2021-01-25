@@ -7,6 +7,7 @@ import ErrorComponent from '../../layout/error/ErrorComponent';
 import LoadingComponent from '../../layout/loading/LoadingComponent';
 
 import * as CONST from './../../helpers/Constants';
+import * as ENV from './../../helpers/Env';
 
 export default class Product extends React.Component {
   constructor(props) {
@@ -36,7 +37,7 @@ export default class Product extends React.Component {
   getAllProducts() {
     this.setState({ hasError: false, loading: true });
     Axios
-      .get('http://192.168.55.101:8080/products')
+      .get(`${ENV.LOCALHOST}${ENV.PRODUCTS}`)
       .then(resp => {
         const { data } = resp;
         this.setState({
@@ -67,10 +68,22 @@ export default class Product extends React.Component {
 
   }
 
+  onRefresh = () => {
+    Axios
+      .get(`${ENV.LOCALHOST}${ENV.PRODUCTS}`)
+      .then(resp => {
+        const { data } = resp;
+        this.setState({
+          products: data,
+        });
+      })
+  }
+
   listProducts() {
     return <ProductList
       products={this.state.products}
-      navigationDetail={(product) => this.props.navigation.navigate('ProductDetails', product)} />
+      navigationDetail={(product) => this.props.navigation.navigate('ProductDetails', product)}
+      onRefreshFn={() => this.onRefresh()} />
   }
 
   render() {

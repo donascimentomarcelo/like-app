@@ -13,9 +13,15 @@ import EmptyList from '../../../layout/list/EmptyList';
 
 import * as CONST from './../../../helpers/Constants';
 
-const ProductList = props => {
+const ProductList = ({ products, navigationDetail, onRefreshFn }) => {
 
-    const { products, navigationDetail } = props || [];
+    const [isFetching, setIsFetching] = React.useState(false);
+
+    const onRefresh = () => {
+        setIsFetching(true);
+        onRefreshFn();
+        setIsFetching(false);
+    }
 
     return (
         products.length > CONST.ZERO ?
@@ -23,7 +29,9 @@ const ProductList = props => {
                 style={styles.container}
                 data={products}
                 keyExtractor={item => item.id.toString()}
-                renderItem={({ item }) => renderRows(item, navigationDetail)}/> :
+                renderItem={({ item }) => renderRows(item, navigationDetail)}
+                onRefresh={() => onRefresh()}
+                refreshing={isFetching}/> :
             <EmptyList
                 message={CONST.EMPTY_PRODUCT_LIST}/>
     );

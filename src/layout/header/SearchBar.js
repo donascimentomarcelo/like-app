@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native'
 import * as CONST from './../../helpers/Constants'
 import FormSearchBar from '../form/FormSearchBar';
 import { Item, Input, Icon } from 'native-base';
@@ -46,6 +46,7 @@ const SearchBar = ({ navigation }) => {
                     placeholder={CONST.SEARCH_PRODUCTS}
                     onChangeText={onChange}
                     value={search}
+                    autoCapitalize='none'
                 />
                 <Icon
                     onPress={() => cleanSearch()}

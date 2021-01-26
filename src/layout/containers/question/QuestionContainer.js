@@ -12,7 +12,9 @@ const QuestionContainer = (
         navigationFn, 
         showAll, 
         showForm, 
-        quantity = 0 
+        quantity = 0,
+        enableSendButton,
+        productId
     }) => {
 
     return (
@@ -24,7 +26,9 @@ const QuestionContainer = (
                 questions={filterArrayByQuantity(questions, showAll, quantity)}
                 allQuestions={allQuestions}
                 navigationFn={navigationFn}
-                showForm={showForm} />
+                showForm={showForm}
+                enableSendButton={enableSendButton}
+                productId={productId} />
 
         </View>
     )

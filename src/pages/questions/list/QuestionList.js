@@ -8,7 +8,7 @@ import * as CONST from './../../../helpers/Constants'
 
 const QuestionList = props => {
 
-    const { allQuestions, navigationFn, showForm } = props;
+    const { allQuestions, navigationFn, showForm, enableSendButton, productId } = props;
 
     const [questions, setQuestions] = React.useState(props.questions);
 
@@ -28,7 +28,9 @@ const QuestionList = props => {
         if (showForm) {
             return (
                 <QuestionForm
-                    addQuestion={(question) => addQuestion(question)} />
+                    addQuestion={(question) => addQuestion(question)}
+                    enableSendButton={enableSendButton}
+                    productId={productId} />
             )
         }
     }

@@ -1,8 +1,11 @@
+import Axios from 'axios';
 import React, { PureComponent } from 'react'
-import { Button, View } from 'react-native'
+import { Alert, Button, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
+import { getHeader } from '../../../utils/LoginUtils';
 import FormRow from '../../form/FormRow';
 import * as CONST from './../../../helpers/Constants';
+import * as ENV from './../../../helpers/Env'
 
 export default class QuestionForm extends PureComponent {
 
@@ -30,14 +33,28 @@ export default class QuestionForm extends PureComponent {
                 <Button
                     title={CONST.SEND}
                     onPress={() => this.addQuestion(this.state.description)}
-                    color={CONST.PRIMARY} />
+                    color={CONST.PRIMARY}
+                    disabled={this.state.enableSendButton} />
             </View>
         )
     }
 
-    addQuestion = description => {
+    addQuestion = async description => {
         this.onChangeHandler('description', '')
-        this.props.addQuestion(description);
+
+        const { productId } = this.props;
+
+        const object = {
+            description,
+            productId
+        };
+
+        const headers = await getHeader();
+
+        Axios
+            .post(`${ENV.LOCALHOST}${ENV.QUESTIONS}`, object, { headers })
+            .then(() => this.props.addQuestion(description))
+            .catch(() => Alert.alert(CONST.SOMETHING_IS_WROG))
     }
 
     onChangeHandler = (field, value) => this.setState({ [field]: value });

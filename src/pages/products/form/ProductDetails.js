@@ -4,6 +4,7 @@ import CommentContainer from '../../../layout/containers/comment/CommentContaine
 import LineContainer from '../../../layout/containers/line/LineContainer';
 import QuestionContainer from '../../../layout/containers/question/QuestionContainer';
 import Footer from '../../../layout/footer/Footer';
+import { getToken } from '../../../utils/LoginUtils';
 import * as CONST from './../../../helpers/Constants';
 
 export default class ProductDetails extends React.Component {
@@ -11,6 +12,14 @@ export default class ProductDetails extends React.Component {
 
         const { product } = this.props.navigation.state.params;
 
+        const checkToken = async () => {
+
+            let hasToken = false;
+
+            await getToken().then(token => hasToken = token ? true : false);
+
+            return hasToken;
+        }
         return (
             <ScrollView style={styles.container}>
                 <Image
@@ -43,7 +52,9 @@ export default class ProductDetails extends React.Component {
                     navigationFn={() => this.props.navigation.navigate('QuestionList', product.questions)}
                     showAll={false}
                     showForm={true}
-                    quantity={CONST.ONE} />
+                    quantity={CONST.ONE}
+                    enableSendButton={checkToken()}
+                    productId={product.id} />
 
                 <Footer />
             </ScrollView>

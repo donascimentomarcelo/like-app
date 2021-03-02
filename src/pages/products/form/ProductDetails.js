@@ -6,6 +6,7 @@ import QuestionContainer from '../../../layout/containers/question/QuestionConta
 import Footer from '../../../layout/footer/Footer';
 import { getToken } from '../../../utils/LoginUtils';
 import * as CONST from './../../../helpers/Constants';
+import * as ENV from './../../../helpers/Env';
 
 export default class ProductDetails extends React.Component {
     render() {
@@ -23,7 +24,7 @@ export default class ProductDetails extends React.Component {
         return (
             <ScrollView style={styles.container}>
                 <Image
-                    source={{ uri: 'https://source.unsplash.com/collection/190727/1600x900' }}
+                    source={{ uri: `${ENV.AMAZON_S3}${ENV.PRODUCTS}/${product.id}${CONST.JPEG}` }}
                     style={styles.avatar} />
 
                 <LineContainer

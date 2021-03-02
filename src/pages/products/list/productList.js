@@ -12,6 +12,7 @@ import RenderPrice from '../../../layout/list/RenderPrice';
 import EmptyList from '../../../layout/list/EmptyList';
 
 import * as CONST from './../../../helpers/Constants';
+import * as ENV from './../../../helpers/Env';
 
 const ProductList = ({ products, navigationDetail, onRefreshFn }) => {
 
@@ -50,7 +51,7 @@ const renderRows = (product, navigationDetail) => {
                 <View style={styles.line}>
                     <Image 
                         style={styles.avatar}
-                        source={{ uri: 'https://randomuser.me/api/portraits/thumb/women/66.jpg' }}/>
+                        source={{ uri: `${ENV.AMAZON_S3}${ENV.PRODUCTS}/${id}${CONST.JPEG}` }}/>
                     <Text style={styles.description}>{ description }</Text>
                 </View>
                 <View style={styles.price}>

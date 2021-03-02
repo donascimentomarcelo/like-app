@@ -40,3 +40,9 @@ export const SOMETHING_IS_WROG = 'Algo deu errado...';
 export const EMPTY_PRODUCT_LIST = 'Não existem produtos cadastrados';
 export const EMPTY_CATEGORY_LIST = 'Não existem categorias cadastrados';
 export const AUTH_ERROR = 'Erro de Autenticação';
+
+/** Headers */
+export const APPLICATION_JSON = 'application/json';
+
+/** Format Image */
+export const JPEG = '.jpg';

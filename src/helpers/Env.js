@@ -7,3 +7,6 @@ export const PRODUCTS = '/products';
 export const CATEGORIES = '/categories'; 
 export const QUESTIONS = '/questions'; 
 export const USERS = '/users'; 
+
+/** S3 */
+export const AMAZON_S3 = 'https://like-api.s3-sa-east-1.amazonaws.com';

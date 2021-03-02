@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import EmptyList from '../../../layout/list/EmptyList'
 import { capitalizeFristLetter } from '../../../utils/Utils'
 import * as CONST from './../../../helpers/Constants'
+import * as ENV from './../../../helpers/Env';
 
 const CategoryList = ({ categories, navigationDetail, onRefreshFn }) => {
 
@@ -40,7 +41,7 @@ const renderRows = (category, navigationDetail) => {
                 <View style={styles.line}>
                     <Image 
                         style={styles.avatar}
-                        source={{ uri: 'https://source.unsplash.com/collection/190727/1600x900' }}/>
+                        source={{ uri: `${ENV.AMAZON_S3}${ENV.CATEGORIES}/${id}${CONST.JPEG}` }}/>
 
                     <Text style={styles.title}>{ `${capitalizeFristLetter(name)}` }</Text>
                 </View>

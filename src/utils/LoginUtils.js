@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
+import * as ENV from './../helpers/Constants';
 
 export async function setToken(token) {
   try {
@@ -25,7 +26,7 @@ export async function getHeader() {
   await getToken().then(response => token = response);
 
   const headers = {
-    'Content-Type': 'application/json',
+    'Content-Type': ENV.APPLICATION_JSON,
     'Authorization': token
   };
 
